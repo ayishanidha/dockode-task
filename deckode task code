@@ -1,0 +1,57 @@
+#include <iostream>
+
+using namespace std;
+
+/**
+ * Method to print side and bottom borders of the step
+ * gap : inidicates how many gaps required on the step
+ * isLast : indicates whether it's a last row of the step or not.
+ * */
+
+string stepBorderString(int gap,bool isLast) {
+    string stepGapStr = "        ";
+    string stepBorder = "|";
+    string stepBorderLine = stepBorder;
+    string bottomBorder = "________";
+    for(int i=0;i<gap;i++){
+        if(isLast) stepBorderLine += bottomBorder;
+        else stepBorderLine += stepGapStr;
+    }
+    stepBorderLine += stepBorder;
+    return stepBorderLine;
+}
+
+
+/**
+ * Mothod to build the step based on the count
+ * count: indicates the step count required to build the step
+ * */
+void buildStep(int count) {
+    if(count < 1) return;
+    int stepGap = 1;
+    
+    string stepTop = "________";
+    
+    
+    while(stepGap <= count) {
+        if(stepGap == 1) cout<<" ";
+        bool isLast = stepGap == count;
+        cout<<stepTop;
+        cout<<"\n";
+        cout<<stepBorderString(stepGap,false);
+        cout<<"\n";
+        cout<<stepBorderString(stepGap,isLast);
+        stepGap++;
+    }
+    
+}
+
+
+int main()
+{
+    int count;
+    cout<<"Enter number of steps required: ";
+    cin>>count;
+    buildStep(count);
+    return 0;
+}
